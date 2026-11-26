@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.carrierpilot.company.dto.CompanyRequestDTO;
 import com.carrierpilot.company.dto.CompanyResponseDTO;
-
 public interface CompanyService {
 	public CompanyResponseDTO createCompany(CompanyRequestDTO request, String userEmail);
 	public List<CompanyResponseDTO> getAllCompanies(String userEmail);

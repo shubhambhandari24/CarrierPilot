@@ -63,14 +63,15 @@ public class Company {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Company(long id, String companyName, String industry, String website, String location, String description) {
+	
+	public Company( String companyName, String industry, String website, String location, String description, User user) {
 		super();
-		this.id = id;
 		this.companyName = companyName;
 		this.industry = industry;
 		this.website = website;
 		this.location = location;
 		this.description = description;
+		this.user=user;
 	}
 	public Company( String companyName, String industry, String website, String location, String description) {
 		this.companyName = companyName;
