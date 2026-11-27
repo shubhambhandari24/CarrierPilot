@@ -1,0 +1,6 @@
+package com.carrierpilot.application;
+
+public  enum ApplicationStatus {
+	APPLIED,RESUME_VIEWED,RECRUITER_CONTACTED,SHORTLISTED,INTERVIEW_SCHEDULED,OFFER_RECIEVED,REJECTED
+
+}
