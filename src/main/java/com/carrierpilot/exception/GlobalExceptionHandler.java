@@ -12,7 +12,7 @@ public class GlobalExceptionHandler{
 	}
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<String> handleRunTimeException(RuntimeException ex){
-		return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 
