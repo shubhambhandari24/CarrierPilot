@@ -8,27 +8,30 @@ public class InterviewResponseDTO {
 	private String jobTitle;
 	private String companyName;
 	private String roundName;
+	private LocalDateTime interviewDate;
 	private String interviewType;
 	private String meetingLink;
 	private String status;
 	private String feedback;
-	public InterviewResponseDTO(Long long1, Long long2, String string, String string2, String string3, String string4, LocalDateTime localDateTime, String string5, String string6, String string7) {
+	public InterviewResponseDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public InterviewResponseDTO(Long id,Long applicationId, String jobTitle, String companyName, String roundName,
-			String interviewType, String meetingLink, String status, String feedback) {
+			LocalDateTime interviewDate, String interviewType, String meetingLink, String status, String feedback) {
 		super();
 		this.id=id;
 		this.applicationId = applicationId;
 		this.jobTitle = jobTitle;
 		this.companyName = companyName;
 		this.roundName = roundName;
+		this.interviewDate=interviewDate;
 		this.interviewType = interviewType;
 		this.meetingLink = meetingLink;
 		this.status = status;
 		this.feedback = feedback;
 	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -82,6 +85,12 @@ public class InterviewResponseDTO {
 	}
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+	public void setInterviewDate(LocalDateTime interviewDate) {
+		this.interviewDate=interviewDate;
+	}
+	public LocalDateTime getInterviewDate() {
+		return interviewDate;
 	}
 	
 

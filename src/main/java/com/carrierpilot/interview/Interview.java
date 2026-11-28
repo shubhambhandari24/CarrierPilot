@@ -19,7 +19,7 @@ public class Interview {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name="company_id", nullable = false)
+	@JoinColumn(name="application_Id", nullable = false)
 	private Application application;
 	@Column(nullable = false)
 	private String roundName;
@@ -101,6 +101,8 @@ public class Interview {
 		this.status = status;
 		this.feedBack = feedBack;
 	}
-	
+	public Interview() {
+		// TODO Auto-generated constructor stub
+	}
 
 }

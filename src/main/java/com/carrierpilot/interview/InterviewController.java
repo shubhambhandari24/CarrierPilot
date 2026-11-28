@@ -41,17 +41,17 @@ public class InterviewController {
 	@GetMapping("/{id}")
 	public ResponseEntity<InterviewResponseDTO> getInterviewById(@PathVariable Long applicationId,@PathVariable Long id, Authentication authentication){
 		String userEmail = authentication.getName();
-		InterviewResponseDTO interviewById = interviewService.getInterviewById(id, applicationId, userEmail);
+		InterviewResponseDTO interviewById = interviewService.getInterviewById(applicationId, id, userEmail);
 		return ResponseEntity.ok(interviewById);
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<InterviewResponseDTO> updateInterview(@PathVariable Long applicationId,@PathVariable Long id,@RequestBody InterviewRequestDTO request, Authentication authentication){
 		String userEmail = authentication.getName();
-		InterviewResponseDTO updateInterview = interviewService.updateInterview(id, applicationId, request, userEmail);
+		InterviewResponseDTO updateInterview = interviewService.updateInterview(applicationId, id, request, userEmail);
 		return ResponseEntity.ok(updateInterview);
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteInterview(@PathVariable Long id,@PathVariable Long applicationId, Authentication authentication){
+	public ResponseEntity<String> deleteInterview(@PathVariable Long applicationId,@PathVariable Long id, Authentication authentication){
 		String userEmail = authentication.getName();
 		interviewService.deleteInterview(id, applicationId, userEmail);
 		return ResponseEntity.ok("Interview was deleted successfully with Id"+id);

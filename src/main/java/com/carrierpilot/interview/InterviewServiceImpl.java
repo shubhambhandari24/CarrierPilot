@@ -2,8 +2,6 @@ package com.carrierpilot.interview;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +30,7 @@ public class InterviewServiceImpl implements InterviewService{
 		return applicationRepository.findByIdAndUser(applicationId, user).orElseThrow(()->new RuntimeException("Application Not found with this Id:"+applicationId));
 	}
 	public InterviewResponseDTO mapToDto(Interview interview) {
-		return new InterviewResponseDTO(interview.getId(),interview.getApplication().getId(),interview.getApplication().getJob().getJobTitle(), interview.getApplication().getJob().getCompany().getCompanyName(),interview.getRoundName(),interview.getInterviewType() ,interview.getInterviewDate(),interview.getMeetingLink(),interview.getStatus(),interview.getFeedBack());
+		return new InterviewResponseDTO(interview.getId(),interview.getApplication().getId(),interview.getApplication().getJob().getJobTitle(), interview.getApplication().getJob().getCompany().getCompanyName(),interview.getRoundName(),interview.getInterviewDate(), interview.getInterviewType(), interview.getMeetingLink(),interview.getStatus(),interview.getFeedBack());
 	}
 	@Override
 	public InterviewResponseDTO scheduleInterview(Long applicationId, InterviewRequestDTO request, String userEmail) {
@@ -54,18 +52,18 @@ public class InterviewServiceImpl implements InterviewService{
 		return responseList;
 	}
 	@Override
-	public InterviewResponseDTO getInterviewById(Long id, Long applicationId, String userEmail) {
+	public InterviewResponseDTO getInterviewById(Long applicationId, Long id, String userEmail) {
 		User user = getAuthenticatedUser(userEmail);
 		Application application = getApplicationExistsWithUser(applicationId, user);
-		Interview interview = interviewRepository.findByIdAndApplication(applicationId, application).orElseThrow(()->new RuntimeException("Interviwer Not Found with the ID:"+applicationId));
+		Interview interview = interviewRepository.findByIdAndApplication(id, application).orElseThrow(()->new RuntimeException("Interviwer Not Found with the ID:"+id));
 		return mapToDto(interview);
 	}
 	@Override
-	public InterviewResponseDTO updateInterview(Long id, Long applicationId, InterviewRequestDTO request,
+	public InterviewResponseDTO updateInterview(Long applicationId, Long id, InterviewRequestDTO request,
 			String userEmail) {
 		User user = getAuthenticatedUser(userEmail);
 		Application application = getApplicationExistsWithUser(applicationId, user);
-		Interview interview = interviewRepository.findByIdAndApplication(applicationId, application).orElseThrow(()-> new RuntimeException("Interview not found with the id: "+applicationId));
+		Interview interview = interviewRepository.findByIdAndApplication(id, application).orElseThrow(()-> new RuntimeException("Interview not found with the id: "+id));
 		if(request.getRoundName()!=null) {
 			interview.setRoundName(request.getRoundName());
 		}
@@ -91,7 +89,7 @@ public class InterviewServiceImpl implements InterviewService{
 	public void deleteInterview(Long id, Long applicationId, String userEmail) {
 		User user = getAuthenticatedUser(userEmail);
 		Application application = getApplicationExistsWithUser(applicationId, user);
-		Interview interview = interviewRepository.findByIdAndApplication(applicationId, application).orElseThrow(()-> new RuntimeException("Interview not found with the Id:"+applicationId));
+		Interview interview = interviewRepository.findByIdAndApplication(id, application).orElseThrow(()-> new RuntimeException("Interview not found with the Id:"+id));
 		interviewRepository.delete(interview);
 	}
 
